@@ -1,16 +1,3 @@
-<?php
-session_start();
-
-require_once("settings.php");
-require_once("includes/db.php");
-require_once("includes/autoID.php");
-require_once("includes/loginFunction.php");
-require_once("includes/shoppingcartFunction.php");
-require_once("includes/messageHelper.php");
-
-$objLogIn = new logIn;
-$isLoggedIn = $objLogIn->isLoggedIn();
-?>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -34,3 +21,17 @@ $isLoggedIn = $objLogIn->isLoggedIn();
     </head>
     <body>
         <div id="page">
+            <?php include ('includes/sidebar.php'); ?>
+            <div id="content">
+                <?php include ('includes/banner.php'); ?>
+
+                <div id="content-inner">
+
+                    <?php
+                    $message = messageHelper::getMessage();
+
+                    if (isset($message)) {
+                        echo $message;
+                        messageHelper::clearMessage();
+                    }
+                    ?>

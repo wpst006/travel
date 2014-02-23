@@ -5,16 +5,13 @@
     <!-- end header -->
     <div id="menu">
         <ul>
-            <li class="first"><a href="#">Home</a></li>
+            <li class="first"><a href="index">Home</a></li>
+            <li><a href="register.php">Register</a></li>
             <?php if ($isLoggedIn == false) { ?>
                 <li><a href="login.php">Log In</a></li>
             <?php } else { ?>
                 <li><a href="logout.php">Log Out</a></li>
-            <?php } ?>
-            <li><a href="#">Travel Packages</a></li>
-            <li><a href="#">Customer Support</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <?php } ?>             
         </ul>
     </div>
     <!-- end menu -->

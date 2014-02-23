@@ -1,4 +1,4 @@
-<?php include ('includes/header.php'); ?>
+<?php include('includes/includefiles.php'); ?>
 
 <?php
 if (isset($_POST['submitted'])) {
@@ -12,61 +12,48 @@ if (isset($_POST['submitted'])) {
 
     if ($logInOK == false) {
         $error = true;
-        $message = "Invalid User Name and Password";
+        messageHelper::setMessage("Invalid User Name and Password",MESSAGE_TYPE_ERROR);
     } else {
-        
+        messageHelper::setMessage("You have successfully logged in",MESSAGE_TYPE_SUCCESS);
+        header("Location:index.php");    
+        exit();
     }
 }
 ?>
 
-<?php include ('includes/sidebar.php'); ?>
-<div id="content">
-    <?php include ('includes/banner.php'); ?>
+<?php include('includes/header.php'); ?>
 
-                <?php
-            if (isset($message)) {
-                if ($error)
-                    echo "<div class='error-message'>$message</div>";
-                else
-                    echo "<div class='success-message'>$message</div>";
-            }
-            ?> 
-    
-    <div class="row">
-        <div class="col-md-12">
+<div class="row">
+    <div class="col-md-12">
+        <form role="form" id="login" name="login" action="login.php" method="post" class="form-horizontal">
 
-            <form role="form" id="login_form" name="login_form" action="login.php" method="post" class="form-horizontal">
-
-                <div class="form-group">
-                    <div class="col-sm-3 control-label">User Name :</div>
-                    <div class="col-sm-9">
-                        <input type="text" id="username" name="username" class="form-control" value="" maxlength="30"/>
-                    </div>
+            <div class="form-group">
+                <div class="col-sm-3 control-label">User Name :</div>
+                <div class="col-sm-9">
+                    <input type="text" id="username" name="username" class="form-control" value="" maxlength="30"/>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="col-sm-3 control-label">Password :</div>
-                    <div class="col-sm-9">
-                        <input type="password" id="password" name="password" class="form-control" value="" maxlength="30"/>
-                    </div>
-                </div>                  
-
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <button type="submit" name="submitted" class="btn btn-default btn-primary">Log In</button>
-                        <button type="reset" name="reset"  class="btn btn-default">Reset</button>
-                    </div>
+            <div class="form-group">
+                <div class="col-sm-3 control-label">Password :</div>
+                <div class="col-sm-9">
+                    <input type="password" id="password" name="password" class="form-control" value="" maxlength="30"/>
                 </div>
-            </form>
-        </div>
+            </div>                  
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" name="submitted" class="btn btn-default btn-primary">Log In</button>
+                    <button type="reset" name="reset"  class="btn btn-default">Reset</button>
+
+                </div>
+            </div>
+        </form>
     </div>
-
 </div>
-<!-- end content -->
-<div style="clear: both;">&nbsp;</div>
 
 <script type="text/javascript">
-    $("#login_form").validate({
+    $("#login").validate({
         rules: {
             username: 
                 {
@@ -86,4 +73,4 @@ if (isset($_POST['submitted'])) {
     });
 </script>
 
-<?php include ('includes/footer.php'); ?>
+<?php include('includes/footer.php'); ?>

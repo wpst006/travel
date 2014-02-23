@@ -8,9 +8,17 @@ root {
     margin: 0;
 }
 
-form{    
+form{ 
+    /*
     padding-right: 0;
     padding-top: 25px;
+    */
+}
+
+#content-inner{
+    padding-top:20px;
+    padding-left:20px;
+    padding-right:20px;
 }
 
 .chosen-container-multi .chosen-choices li.search-field input[type="text"]{
@@ -33,4 +41,9 @@ form{
 a.btn, a.btn:link, a.btn:visited {
     color: #FFFFFF;
     font-weight:bold;
+}
+
+#login {
+    background: none;
+    padding: 0px;
 }

@@ -1,4 +1,4 @@
-<?php include ('includes/header.php'); ?>
+<?php include ('includes/includefiles.php'); ?>
 
 <?php
 if (isset($_POST['submitted'])) {
@@ -26,22 +26,14 @@ if (isset($_POST['submitted'])) {
 
     mysql_query($userInsert_sql) or die(mysql_error());
     //*********************************************************************					
-    $message = "Member is successfully saved with MemberID : " . $member_id;
+    messageHelper::setMessage("You have successfully registered. Please log in to continue.",MESSAGE_TYPE_SUCCESS);
+    header("Location:login.php");    
+    exit();
 }
 ?>
 
-<?php include ('includes/sidebar.php'); ?>
-<div id="content">
-    <?php include ('includes/banner.php'); ?>
+<?php include ('includes/header.php'); ?>
 
-    <?php
-    if (isset($message)) {
-        if ($error)
-            echo "<div class='error-message'>$message</div>";
-        else
-            echo "<div class='success-message'>$message</div>";
-    }
-    ?> 
     <div class="row">
         <div class="col-md-12">
             <form role="form" id="register" name="register" action="register.php" method="post" class="form-horizontal">
@@ -97,10 +89,6 @@ if (isset($_POST['submitted'])) {
             </form>
         </div>
     </div>
-
-</div>
-<!-- end content -->
-<div style="clear: both;">&nbsp;</div>
 
 <script type="text/javascript">
     $("#register").validate({
