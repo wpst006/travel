@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 23, 2014 at 12:44 PM
+-- Generation Time: Feb 26, 2014 at 12:44 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.3.13
 
@@ -23,23 +23,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `members`
+-- Table structure for table `customers`
 --
 
-CREATE TABLE IF NOT EXISTS `members` (
-  `member_id` varchar(15) NOT NULL,
+CREATE TABLE IF NOT EXISTS `customers` (
+  `customer_id` varchar(15) NOT NULL,
   `firstname` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
-  PRIMARY KEY (`member_id`)
+  `passport_no` varchar(30) NOT NULL,
+  `country` varchar(50) NOT NULL,
+  `postalcode` varchar(10) NOT NULL,
+  `phone_no` varchar(30) NOT NULL,
+  PRIMARY KEY (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `members`
+-- Dumping data for table `customers`
 --
 
-INSERT INTO `members` (`member_id`, `firstname`, `lastname`) VALUES
-('MEM000001', 'a', 'a'),
-('MEM000002', 'a', 'a');
+INSERT INTO `customers` (`customer_id`, `firstname`, `lastname`, `passport_no`, `country`, `postalcode`, `phone_no`) VALUES
+('CUS000002', 'a', 'a', 'a', 'a', 'a', 'a');
 
 -- --------------------------------------------------------
 
@@ -61,8 +64,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `role`) VALUES
-('MEM000001', 'admin', 'admin@gmail.com', 'admin', 'admin'),
-('MEM000002', 'a', 'a@gmail.com', 'a', 'member');
+('CUS000001', 'admin', 'admin@gmail.com', 'admin', 'admin'),
+('CUS000002', 'a', 'a@gmail.com', 'a', 'member');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
