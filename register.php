@@ -17,11 +17,11 @@ if (isset($_POST['submitted'])) {
     $phone_no = $_POST['phone_no'];
     //*********************************************************************
     //"customers" Table Insert
-    $customerInsert_sql = "INSERT INTO " .
+    $packageTour_sql = "INSERT INTO " .
             "customers(customer_id,firstname,lastname,passport_no,country,postalcode,phone_no) " .
             "VALUES('$customer_id','$firstname','$lastname','$passport_no','$country','$postalcode','$phone_no')";
 
-    mysql_query($customerInsert_sql) or die(mysql_error());
+    mysql_query($packageTour_sql) or die(mysql_error());
     //*********************************************************************
     //User Table Insert
     $userInsert_sql = "INSERT INTO " .
