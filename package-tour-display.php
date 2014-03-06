@@ -42,11 +42,26 @@ if (isset($_GET['action'])) {
                         <td><?php echo $row['title']; ?></td>
                         <td><?php echo $row['duration']; ?></td>
                         <td><?php echo $row['price']; ?></td>
+                        <?php
+                        $objLogIn=new logIn();
+                        
+                        if ($objLogIn->isAdminLogIn()) {
+                        ?>
                         <td class="text-right">
                             <a href="package-tour.php?package_id=<?php echo $row['package_id']; ?>">Edit</a>
                             &nbsp;<a href="package-tour-display.php?package_id=<?php echo $row['package_id']; ?>&action=delete" class="delete-link">Delete</a>
                             &nbsp;<a href="addHotel.php?package_id=<?php echo $row['package_id']; ?>">Hotel Set Up</a>
                         </td>
+                        <?php } else{?>
+                        <td class="text-right">
+                            <?php
+                            $link="add-booking-details.php?package_id=" . $row['package_id'] . 
+                                    "&title=" . $row['title'] . "&duration=" . $row['duration'] . 
+                                    "&price=" . $row['price'];
+                            ?>
+                            <a href="<?php echo $link; ?>">Add to booking</a>
+                        </td>
+                        <?php } ?>
                     </tr>
                 <?php } ?>
             </tbody>

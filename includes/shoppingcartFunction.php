@@ -3,7 +3,7 @@
 class ShoppingCart {
 
     //Constructor
-    public function _construct() {
+    public function __construct() {
         if (!isset($_SESSION['shoppingcart'])) {
             //Creating Session "Array"
             $_SESSION['shoppingcart'] = array();
@@ -21,14 +21,18 @@ class ShoppingCart {
      * 1 - Success
      * 2 - Duplicated
      */
-    function insert($song_id,$title,$artists,$price) {
+    function insert($package_id,$title,$duration,$no_of_people,$price) {
         //Function Call to check
         //If the "Item" already existed in "Session"
-        $index = $this->indexOf($song_id);
+        $index = $this->indexOf($package_id);
 
         //index=1 means "Item" is not existed in "Session"
         if ($index == -1) {            
-            $_SESSION['shoppingcart'][]=array('song_id'=>$song_id,'title'=>$title,'artists'=>$artists,'price'=>$price); 
+            $_SESSION['shoppingcart'][]=array('package_id'=>$package_id,
+                'title'=>$title,
+                'duration'=>$duration,
+                'no_of_people'=>$no_of_people,
+                'price'=>$price); 
 
             return 1;
         } else {
@@ -53,7 +57,7 @@ class ShoppingCart {
     //function to find the index of an item in the shopping cart
     //if "Item" is found, return "Item" Index in the shopping cart
     //if "Item" is not found, return "-1"
-    function indexOf($itemID) {
+    function indexOf($package_id) {
         //var_dump($_SESSION['shoppingcart']);exit();
         if (!isset($_SESSION['shoppingcart']))
             return -1;
@@ -64,7 +68,7 @@ class ShoppingCart {
             return -1;
 
         foreach ($_SESSION['shoppingcart'] as $key=>$value){
-            if ($itemID==$value['song_id']){
+            if ($package_id==$value['package_id']){
                 return $key;
             }
         }

@@ -13,27 +13,32 @@ if (isset($_GET['package_id'])) {
     $title = $packageTourData['title'];
     $duration = $packageTourData['duration'];
     $price = $packageTourData['price'];
-    
-    $packageHotelData= hotelHelper::getPackageTourHotelByPackageID($package_id);
-    
-    $hotel_ids_string='';
-    
-    foreach ($packageHotelData as $key=>$hotel) {        
-        $hotel_ids_string .= $hotel['hotel_id'] . ',';
+
+    $packageHotelData = hotelHelper::getPackageTourHotelByPackageID($package_id);
+
+    $hotel_ids_string = '';
+
+    if (count($packageHotelData) > 0) {
+        foreach ($packageHotelData as $key => $hotel) {
+            $hotel_ids_string .= $hotel['hotel_id'] . ',';
+        }
+        //Remove last "comma" from the string
+        $hotel_ids_string = rtrim($hotel_ids_string, ',');
     }
-    //Remove last "comma" from the string
-    $hotel_ids_string = rtrim($hotel_ids_string, ',');
 }
 
 if (isset($_POST['submitted'])) {
-    $package_id=$_POST['package_id'];
+    //var_dump($_POST);
+    //exit();
+    $package_id = $_POST['package_id'];
     $hotel_id_array = $_POST['hotel_id'];
-    
-    $status=hotelHelper::update_packageTour_Hotel($hotel_id_array, $package_id);
-    
+
+    $status = hotelHelper::update_packageTour_Hotel($hotel_id_array, $package_id);
+
     if ($status == true) {
-        messageHelper::setMessage("Package tour is successfully saved.",MESSAGE_TYPE_SUCCESS);
+        messageHelper::setMessage("Package tour is successfully saved.", MESSAGE_TYPE_SUCCESS);
         header("location:addHotel.php?package_id=" . $package_id);
+        exit();
     }
 }
 ?>
@@ -77,12 +82,12 @@ if (isset($_POST['submitted'])) {
                 <label class="col-sm-3 control-label">Hotel (s) :</label>
                 <div class="col-sm-9">
                     <?php
-                    $hotelData=hotelHelper::selectAll();
+                    $hotelData = hotelHelper::selectAll();
                     ?>
                     <select id="hotel_id" name="hotel_id[]" class="chosen-select" multiple="true" data-placeholder="Choose hotel(s) ...">
-                        <?php foreach ($hotelData as $key=>$hotel) { ?>
+                        <?php foreach ($hotelData as $key => $hotel) { ?>
                             <option value="<?php echo $hotel['hotel_id']; ?>"><?php echo $hotel['hotel_name']; ?></option>
-                        <?php } ?>
+<?php } ?>
                     </select>
                     <input type="hidden" id="hotel_ids_string" name="hotel_ids_string" value="<?php echo $hotel_ids_string; ?>" />
                 </div>                            
