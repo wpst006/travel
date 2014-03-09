@@ -10,4 +10,4 @@ require_once("includes/messageHelper.php");
 
 $objLogIn = new logIn;
 $isLoggedIn = $objLogIn->isLoggedIn();
-?>  
+?>

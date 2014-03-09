@@ -1,7 +1,5 @@
 <?php include('includes/includefiles.php'); ?>
-
 <?php
-
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
 } else {

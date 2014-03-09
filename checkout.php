@@ -1,5 +1,4 @@
-<?php include('includes/includefiles.php'); ?>    
-
+<?php include('includes/includefiles.php'); ?>
 <?php
 $objShoppingCart = new ShoppingCart();
 $shoppingCartData = $objShoppingCart->getShoppingCart();
@@ -29,7 +28,7 @@ if (isset($_POST['submitted'])) {
     $bookingInsert_sql = "INSERT INTO " .
             "bookings(booking_id,booking_date,customer_id,total,status) " .
             "VALUES('$booking_id','" . date('Y-m-d H:i:s') . "','$customer_id',$total,1)";
-    
+
     mysql_query($bookingInsert_sql) or die(mysql_error());
     //******************************************************************************************************************************************
     foreach ($shoppingCartData as $index=>$shoppingCartItem){
@@ -37,11 +36,11 @@ if (isset($_POST['submitted'])) {
         $duration=$shoppingCartItem['duration'];
         $no_of_people=$shoppingCartItem['no_of_people'];
         $price=$shoppingCartItem['price'];
-        
+
         $bookingDetailInsert_sql = "INSERT INTO " .
             "bookingdetails(booking_id,package_id,duration,no_of_people,price) " .
             "VALUES('$booking_id','$package_id','$duration','$no_of_people',$price)";
-    
+
         mysql_query($bookingDetailInsert_sql) or die(mysql_error());
     }
     //******************************************************************************************************************************************
@@ -55,7 +54,7 @@ if (isset($_POST['submitted'])) {
         $error = true;
         $message = 'There is no item in shopping cart. Please Try again.';
         messageHelper::setMessage($message, MESSAGE_TYPE_ERROR);
-    }   
+    }
 }
 ?>
 
@@ -122,34 +121,34 @@ if (isset($_POST['submitted'])) {
                 <div class="col-sm-offset-3 col-sm-9">
                     <button type="submit" name="submitted" class="btn btn-default btn-primary">Check Out</button>
                     <button type="reset" name="reset"  class="btn btn-default">Reset</button>
-                </div>                        
+                </div>
             </div>
         </form>
     </div>
-</div>                           
+</div>
 
 <script type="text/javascript">
     $("#checkout").validate({
         rules: {
-            cardno: 
+            cardno:
                 {
                 required: true
             },
-            cardholdername: 
+            cardholdername:
                 {
                 required: true
             },
-            securitycode: 
+            securitycode:
                 {
                 required: true
-            },            
+            },
         },
         //set messages to appear inline
-        messages: 
+        messages:
             {
             cardno: "Please enter card number.",
             cardholdername: "Please enter card holder name.",
-            securitycode: "Please enter security code.",                     
+            securitycode: "Please enter security code.",
         }
     });
 </script>

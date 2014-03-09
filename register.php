@@ -1,5 +1,4 @@
 <?php include ('includes/includefiles.php'); ?>
-
 <?php
 if (isset($_POST['submitted'])) {
     $error = false;
@@ -29,13 +28,14 @@ if (isset($_POST['submitted'])) {
             "VALUES('$customer_id','$username','$email','$password','member')";
 
     mysql_query($userInsert_sql) or die(mysql_error());
-    //*********************************************************************					
+    //*********************************************************************
     messageHelper::setMessage("You have successfully registered. Please log in to continue.", MESSAGE_TYPE_SUCCESS);
     header("Location:login.php");
     exit();
 }
 ?>
 
+<?php $pageTitle="Register"; ?>
 <?php include ('includes/header.php'); ?>
 
 <div class="row">
@@ -113,10 +113,10 @@ if (isset($_POST['submitted'])) {
             </div>
 
             <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-9">
-                    <button type="submit" name="submitted" class="btn btn-default btn-primary">Save</button>
+                <div class="col-sm-offset-3 col-sm-9 text-right">
+                    <button type="submit" name="submitted" class="btn btn-default btn-success">Register</button>
                     <button type="reset" name="reset"  class="btn btn-default">Reset</button>
-                </div>                        
+                </div>
             </div>
         </form>
     </div>
@@ -125,29 +125,29 @@ if (isset($_POST['submitted'])) {
 <script type="text/javascript">
     $("#register").validate({
         rules: {
-            username: 
+            username:
                 {
                 required: true
             },
-            password: 
+            password:
                 {
                 required: true
             },
-            confirm_password: 
+            confirm_password:
                 {
                 required:true,
                 equalTo: "#password"
             },
-            email: 
+            email:
                 {
                 required: true,
                 email: true
             },
-            firstname: 
+            firstname:
                 {
                 required: true
             },
-            lastname: 
+            lastname:
                 {
                 required: true
             },
@@ -169,22 +169,22 @@ if (isset($_POST['submitted'])) {
             },
         },
         //set messages to appear inline
-        messages: 
+        messages:
             {
             username: "Please enter user name.",
             password: "Please enter a password.",
-            confirm_password: 
+            confirm_password:
                 {
                 required: "Please enter a confirm password.",
                 equalTo: "Password and Confirm Password not match."
             },
-            email: 
-                { 
+            email:
+                {
                 required: "Please enter a E-Mail address.",
                 email: "Please enter a valid E-Mail address."
             },
             firstname: "Please enter first name.",
-            lastname: "Please enter last name.", 
+            lastname: "Please enter last name.",
             passport_no: "Please enter Passport No.",
             country: "Please enter Country.",
             postalcode: "Please enter Postal Code.",

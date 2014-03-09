@@ -1,7 +1,6 @@
 <?php include ('includes/includefiles.php'); ?>
 <?php require_once('includes/packageTourHelper.php'); ?>
 <?php require_once('includes/hotelHelper.php'); ?>
-
 <?php
 $title = '';
 $duration = 1;
@@ -43,6 +42,7 @@ if (isset($_POST['submitted'])) {
 }
 ?>
 
+<?php $pageTitle = "Hotel Set Up"; ?>
 <?php include ('includes/header.php'); ?>
 
 <div class="row">
@@ -50,7 +50,7 @@ if (isset($_POST['submitted'])) {
         <form role="form" id="addHotel" name="addHotel" action="addHotel.php?package_id=<?php echo $package_id; ?>" method="post" class="form-horizontal">
 
             <div class="form-group">
-                <div class="col-sm-3 control-label">Package ID :</div>
+                <label class="col-sm-3 control-label">Package ID :</label>
                 <div class="col-sm-9">
                     <p class="form-control-static"><?php echo $package_id; ?></p>
                     <input type="hidden" id="package_id" name="package_id" value="<?php echo $package_id; ?>" />
@@ -58,7 +58,7 @@ if (isset($_POST['submitted'])) {
             </div>
 
             <div class="form-group">
-                <div class="col-sm-3 control-label">Title :</div>
+                <label class="col-sm-3 control-label">Title :</label>
                 <div class="col-sm-9">
                     <p class="form-control-static"><?php echo $title; ?></p>
                 </div>
@@ -72,7 +72,7 @@ if (isset($_POST['submitted'])) {
             </div>             
 
             <div class="form-group">
-                <div class="col-sm-3 control-label">Price :</div>
+                <label class="col-sm-3 control-label">Price :</label>
                 <div class="col-sm-9">
                     <p class="form-control-static"><?php echo $price; ?></p>
                 </div>
@@ -87,15 +87,15 @@ if (isset($_POST['submitted'])) {
                     <select id="hotel_id" name="hotel_id[]" class="chosen-select" multiple="true" data-placeholder="Choose hotel(s) ...">
                         <?php foreach ($hotelData as $key => $hotel) { ?>
                             <option value="<?php echo $hotel['hotel_id']; ?>"><?php echo $hotel['hotel_name']; ?></option>
-<?php } ?>
+                        <?php } ?>
                     </select>
                     <input type="hidden" id="hotel_ids_string" name="hotel_ids_string" value="<?php echo $hotel_ids_string; ?>" />
                 </div>                            
             </div>
 
             <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-9">
-                    <button type="submit" name="submitted" class="btn btn-default btn-primary">Save</button>
+                <div class="col-sm-offset-3 col-sm-9 text-right">
+                    <button type="submit" name="submitted" class="btn btn-default btn-success">Save</button>
                     <button type="reset" name="reset"  class="btn btn-default">Reset</button>
                 </div>                        
             </div>

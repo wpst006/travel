@@ -1,5 +1,4 @@
 <?php include ('includes/includefiles.php'); ?>
-
 <?php
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'delete') {
@@ -13,7 +12,7 @@ if (isset($_GET['action'])) {
     }
 }
 ?>
-
+<?php $pageTitle="Package Tour Display"; ?>
 <?php include ('includes/header.php'); ?>
 
 <link href="css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
@@ -40,7 +39,7 @@ if (isset($_GET['action'])) {
                     <tr>                        
                         <td><?php echo $row['package_id']; ?></td>
                         <td><?php echo $row['title']; ?></td>
-                        <td><?php echo $row['duration']; ?></td>
+                        <td><?php echo $row['duration'] . " day(s)"; ?></td>
                         <td><?php echo $row['price']; ?></td>
                         <?php
                         $objLogIn=new logIn();
@@ -76,7 +75,7 @@ if (isset($_GET['action'])) {
             //"sPaginationType": "bootstrap",
             "sPaginationType": "full_numbers",
             "bLengthChange": false,
-            "bFilter": true,
+            "bFilter": false,
             "bInfo": false,
         });                      
         

@@ -1,6 +1,5 @@
 <?php include ('includes/includefiles.php'); ?>
 <?php require_once('includes/packageTourHelper.php'); ?>
-
 <?php
 if (isset($_POST['submitted'])) {
     //*********************************************************************
@@ -12,7 +11,7 @@ if (isset($_POST['submitted'])) {
     }
     $title = $_POST['title'];
     $duration = $_POST['duration'];
-    $price = $_POST['price'];    
+    $price = $_POST['price'];
     //*********************************************************************
     if (!isset($_POST['package_id'])){
         //"package tours" Table Insert
@@ -29,16 +28,16 @@ if (isset($_POST['submitted'])) {
                 "WHERE package_id='" . $package_id . "'";
     }
     mysql_query($packageTour_sql) or die(mysql_error());
-    //*********************************************************************    
+    //*********************************************************************
     messageHelper::setMessage("You have successfully saved a tour package.", MESSAGE_TYPE_SUCCESS);
     header("Location:package-tour-display.php");
     exit();
 }else{
-    
+
     $title='';
     $duration=1;
     $price=0.0;
-    
+
     if (isset($_GET['package_id'])){
         $package_id=$_GET['package_id'];
         $packageTourData=  packageTourHelper::getPackageTourByPackageID($package_id);
@@ -46,11 +45,12 @@ if (isset($_POST['submitted'])) {
         $duration=$packageTourData['duration'];
         $price=$packageTourData['price'];
     }else{
-        
+
     }
 }
 ?>
 
+<?php $pageTitle="Package Tour Set Up"; ?>
 <?php include ('includes/header.php'); ?>
 
 <div class="row">
@@ -61,7 +61,7 @@ if (isset($_POST['submitted'])) {
             <input type="hidden" id="package_id" name="package_id" value="<?php echo $_GET['package_id']; ?>" />
             <input type="hidden" id="selected_duration" name="selected_duration" value="<?php echo $duration; ?>" />
             <?php } ?>
-            
+
             <div class="form-group">
                 <div class="col-sm-3 control-label">Title :</div>
                 <div class="col-sm-9">
@@ -80,8 +80,8 @@ if (isset($_POST['submitted'])) {
                             <option value="<?php echo $durationData[$i]; ?>"><?php echo $durationData[$i] . " day(s)"; ?></option>
                         <?php } ?>
                     </select>
-                </div>                            
-            </div>             
+                </div>
+            </div>
 
             <div class="form-group">
                 <div class="col-sm-3 control-label">Price :</div>
@@ -91,48 +91,48 @@ if (isset($_POST['submitted'])) {
             </div>
 
             <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-9">
-                    <button type="submit" name="submitted" class="btn btn-default btn-primary">Save</button>
+                <div class="col-sm-offset-3 col-sm-9 text-right">
+                    <button type="submit" name="submitted" class="btn btn-default btn-success">Save</button>
                     <button type="reset" name="reset"  class="btn btn-default">Reset</button>
-                </div>                        
+                </div>
             </div>
         </form>
     </div>
 </div>
 
 <script type="text/javascript">
-    
+
     $(document).ready(function(){
-       $(".chosen-select").chosen({width: "100%"}); 
-       
+       $(".chosen-select").chosen({width: "100%"});
+
         if ($('#package_id').length>0){
             $('#duration').val($('#selected_duration').val());
             $("#duration").trigger("chosen:updated");
         }
-        
+
     });
-    
+
     $("#package_tour").validate({
         rules: {
-            title: 
+            title:
                 {
                 required: true
             },
-            price: 
+            price:
                 {
                 required:true,
                 number: true
-            },           
+            },
         },
         //set messages to appear inline
-        messages: 
+        messages:
             {
-            title: "Please enter package tour title.",            
-            price: 
+            title: "Please enter package tour title.",
+            price:
                 {
                 required: "Please enter a price for package tour.",
                 number: "Please enter a valid number for price."
-            },            
+            },
         }
     });
 </script>

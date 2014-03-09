@@ -12,12 +12,14 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
         <link href="css/custom-style.css" rel="stylesheet" type="text/css" />
+        <link href="css/flexslider.css" rel="stylesheet" type="text/css" />
         <!-- Site JavaScript -->
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.validate.min.js"></script>
         <script src="js/chosen/chosen.jquery.min.js" type="text/javascript"></script>                                
         <script src="js/chosen/chosen.proto.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>  
+        <script src="js/jquery.flexslider.js" type="text/javascript"></script>  
     </head>
     <body>
         <div id="page">
@@ -26,6 +28,10 @@
                 <?php include ('includes/banner.php'); ?>
 
                 <div id="content-inner">
+
+                    <?php if (isset($pageTitle)) { ?>
+                        <div class="my-page-heading"><?php echo $pageTitle; ?></div>
+                    <?php } ?>
 
                     <?php
                     $message = messageHelper::getMessage();

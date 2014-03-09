@@ -1,7 +1,13 @@
-<?php include('includes/includefiles.php'); ?>    
+<?php include('includes/includefiles.php'); ?>
 <?php require_once('includes/packageTourHelper.php'); ?>
-
 <?php
+
+if ($objLogIn->isMemberLogIn()==false){
+     messageHelper::setMessage("You haven't logged into the system. Please log in to continue.", MESSAGE_TYPE_INFO);
+    header("Location:login.php");
+    exit();
+}
+
 $package_id = $_GET['package_id'];
 $title = $_GET['title'];
 $price = $_GET['price'];
@@ -21,14 +27,14 @@ $price = $_GET['price'];
             <div class="form-group">
                 <label class="col-sm-3 control-label">Title</label>
                 <div class="col-sm-9">
-                    <p id="title" class="form-control-static"><?php echo $title; ?></p>                    
+                    <p id="title" class="form-control-static"><?php echo $title; ?></p>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-sm-3 control-label">Price</div>
                 <div class="col-sm-9">
-                    <p id="price" class="form-control-static"><?php echo $price; ?></p>        
+                    <p id="price" class="form-control-static"><?php echo $price; ?></p>
                 </div>
             </div>
 
@@ -61,15 +67,15 @@ $price = $_GET['price'];
                 <div class="col-sm-offset-3 col-sm-9">
                     <button type="submit" name="submitted" class="btn btn-default btn-primary">Add to Booking</button>
                     <button type="reset" name="reset"  class="btn btn-default">Reset</button>
-                </div>                        
+                </div>
             </div>
         </form>
     </div>
-</div>                           
+</div>
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $(".chosen-select").chosen({width: "100%"}); 
+        $(".chosen-select").chosen({width: "100%"});
     });
 </script>
 

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.2.4
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 04, 2014 at 07:22 PM
--- Server version: 5.5.24-log
--- PHP Version: 5.3.13
+-- Generation Time: Mar 09, 2014 at 04:34 PM
+-- Server version: 5.1.41
+-- PHP Version: 5.3.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -23,21 +22,51 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bookingdetails`
+--
+
+CREATE TABLE IF NOT EXISTS `bookingdetails` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `booking_id` varchar(15) NOT NULL,
+  `package_id` varchar(15) NOT NULL,
+  `duration` varchar(50) NOT NULL,
+  `no_of_people` int(3) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `bookingdetails`
+--
+
+INSERT INTO `bookingdetails` (`id`, `booking_id`, `package_id`, `duration`, `no_of_people`, `price`) VALUES
+(1, '1139658107', 'PKG_000001', '2', 3, '5.00'),
+(2, '1289810385', 'PKG_000001', '1', 2, '5.00'),
+(3, '1275121773', 'PKG_000001', '1', 2, '5.00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `bookings`
 --
 
 CREATE TABLE IF NOT EXISTS `bookings` (
   `booking_id` varchar(15) NOT NULL,
   `booking_date` datetime NOT NULL,
-  `package_id` varchar(15) NOT NULL,
-  `title` varchar(50) NOT NULL,
-  `price` decimal(10,2) NOT NULL,
-  `duration` varchar(50) NOT NULL,
-  `no_of_people` int(2) NOT NULL,
-  `airline_no` varchar(50) NOT NULL,
-  `route` varchar(50) NOT NULL,
+  `customer_id` varchar(15) NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `status` int(1) NOT NULL,
   PRIMARY KEY (`booking_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`booking_id`, `booking_date`, `customer_id`, `total`, `status`) VALUES
+('1139658107', '2014-03-06 18:56:04', 'CUS000002', '5.00', 1),
+('1275121773', '2014-03-09 04:19:00', 'CUS000003', '5.00', 1),
+('1289810385', '2014-03-09 04:18:46', 'CUS000003', '5.00', 1);
 
 -- --------------------------------------------------------
 
@@ -103,7 +132,9 @@ CREATE TABLE IF NOT EXISTS `packagetours` (
 --
 
 INSERT INTO `packagetours` (`package_id`, `title`, `duration`, `price`) VALUES
-('PKG_000001', 'abcde', '5', '5.00');
+('PKG_000001', 'abcde', '5', '5.00'),
+('PKG_000002', 'test', '4', '3.00'),
+('PKG_000003', 'wwwwwwwwwwww', '2', '23.00');
 
 -- --------------------------------------------------------
 
@@ -116,15 +147,45 @@ CREATE TABLE IF NOT EXISTS `packagetour_hotel` (
   `hotel_id` varchar(15) NOT NULL,
   `packagetour_id` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
 
 --
 -- Dumping data for table `packagetour_hotel`
 --
 
 INSERT INTO `packagetour_hotel` (`id`, `hotel_id`, `packagetour_id`) VALUES
-(14, 'HOT_000003', 'PKG_000001'),
-(15, 'HOT_000002', 'PKG_000001');
+(29, 'HOT_000003', 'PKG_000002'),
+(30, 'HOT_000003', 'PKG_000001'),
+(31, 'HOT_000001', 'PKG_000001'),
+(32, 'HOT_000003', 'PKG_000004'),
+(33, 'HOT_000002', 'PKG_000004'),
+(34, 'HOT_000001', 'PKG_000004');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE IF NOT EXISTS `payments` (
+  `payment_id` varchar(15) NOT NULL,
+  `paymentdate` datetime NOT NULL,
+  `booking_id` varchar(15) NOT NULL,
+  `cardno` varchar(30) NOT NULL,
+  `cardtype` varchar(10) NOT NULL,
+  `cardholdername` varchar(30) NOT NULL,
+  `securitycode` varchar(5) NOT NULL,
+  PRIMARY KEY (`payment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`payment_id`, `paymentdate`, `booking_id`, `cardno`, `cardtype`, `cardholdername`, `securitycode`) VALUES
+('1165285629', '2014-03-09 04:18:46', '1289810385', 'dsaf', 'mastercard', 'asf', 'asdf'),
+('1218547811', '2014-03-09 04:19:00', '1275121773', 'dsaf', 'mastercard', 'asf', 'asdf'),
+('1288615224', '2014-03-06 18:56:04', '1139658107', 'a', 'mastercard', 'asda', 'asdf');
 
 -- --------------------------------------------------------
 

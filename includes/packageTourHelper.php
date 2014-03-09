@@ -18,21 +18,21 @@ class packageTourHelper {
                 "WHERE package_id='" . $package_id . "'";
 
         $result = mysql_query($sql) or die(mysql_error());
-        
+
         if (mysql_num_rows($result)==0){
             return null;
         }
-        
-        $row = mysql_fetch_array($result);        
-        
+
+        $row = mysql_fetch_array($result);
+
         $output=array(
             'package_id' => $row['package_id'],
             'title' => $row['title'],
             'duration' => $row['duration'],
             'price' => $row['price'],
         );
-        
-        return $output;        
+
+        return $output;
     }
 
 }
