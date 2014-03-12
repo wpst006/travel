@@ -44,6 +44,9 @@ if (isset($_POST['submitted'])) {
         mysql_query($bookingDetailInsert_sql) or die(mysql_error());
     }
     //******************************************************************************************************************************************
+    //Clear the shopping cart
+    $objShoppingCart->clear();
+    //******************************************************************************************************************************************
     $message = "Payment is successfully made with Payment ID : " . $payment_id . ".";
     messageHelper::setMessage($message, MESSAGE_TYPE_SUCCESS);
     header("Location:index.php");

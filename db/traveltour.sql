@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 09, 2014 at 04:34 PM
+-- Generation Time: Mar 12, 2014 at 11:41 PM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `bookingdetails` (
   `no_of_people` int(3) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `bookingdetails`
@@ -42,7 +42,13 @@ CREATE TABLE IF NOT EXISTS `bookingdetails` (
 INSERT INTO `bookingdetails` (`id`, `booking_id`, `package_id`, `duration`, `no_of_people`, `price`) VALUES
 (1, '1139658107', 'PKG_000001', '2', 3, '5.00'),
 (2, '1289810385', 'PKG_000001', '1', 2, '5.00'),
-(3, '1275121773', 'PKG_000001', '1', 2, '5.00');
+(3, '1275121773', 'PKG_000001', '1', 2, '5.00'),
+(4, '1340636629', 'PKG_000001', '1', 2, '5.00'),
+(5, '1113921106', 'PKG_000001', '1', 2, '5.00'),
+(6, '1113921106', 'PKG_000002', '3', 3, '3.00'),
+(7, '1366574345', 'PKG_000001', '1', 2, '5.00'),
+(8, '1291598563', 'PKG_000001', '1', 2, '5.00'),
+(9, '1406826614', 'PKG_000001', '1', 1, '5.00');
 
 -- --------------------------------------------------------
 
@@ -64,9 +70,14 @@ CREATE TABLE IF NOT EXISTS `bookings` (
 --
 
 INSERT INTO `bookings` (`booking_id`, `booking_date`, `customer_id`, `total`, `status`) VALUES
+('1113921106', '2014-03-12 23:35:05', 'CUS000003', '8.00', 1),
 ('1139658107', '2014-03-06 18:56:04', 'CUS000002', '5.00', 1),
 ('1275121773', '2014-03-09 04:19:00', 'CUS000003', '5.00', 1),
-('1289810385', '2014-03-09 04:18:46', 'CUS000003', '5.00', 1);
+('1289810385', '2014-03-09 04:18:46', 'CUS000003', '5.00', 1),
+('1291598563', '2014-03-12 23:37:59', 'CUS000003', '5.00', 1),
+('1340636629', '2014-03-12 23:31:48', 'CUS000003', '5.00', 1),
+('1366574345', '2014-03-12 23:36:46', 'CUS000003', '5.00', 1),
+('1406826614', '2014-03-12 23:38:07', 'CUS000003', '5.00', 1);
 
 -- --------------------------------------------------------
 
@@ -90,7 +101,8 @@ CREATE TABLE IF NOT EXISTS `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `firstname`, `lastname`, `passport_no`, `country`, `postalcode`, `phone_no`) VALUES
-('CUS000002', 'a', 'a', 'a', 'a', 'a', 'a');
+('CUS000002', 'a', 'a', 'a', 'a', 'a', 'a'),
+('CUS000003', 'b', 'b', 'b', 'b', 'b', 'b');
 
 -- --------------------------------------------------------
 
@@ -132,9 +144,9 @@ CREATE TABLE IF NOT EXISTS `packagetours` (
 --
 
 INSERT INTO `packagetours` (`package_id`, `title`, `duration`, `price`) VALUES
-('PKG_000001', 'abcde', '5', '5.00'),
+('PKG_000001', 'abcde', '4', '5.00'),
 ('PKG_000002', 'test', '4', '3.00'),
-('PKG_000003', 'wwwwwwwwwwww', '2', '23.00');
+('PKG_000003', 'wwwwwwwwwwww', '9', '23.00');
 
 -- --------------------------------------------------------
 
@@ -147,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `packagetour_hotel` (
   `hotel_id` varchar(15) NOT NULL,
   `packagetour_id` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `packagetour_hotel`
@@ -155,11 +167,10 @@ CREATE TABLE IF NOT EXISTS `packagetour_hotel` (
 
 INSERT INTO `packagetour_hotel` (`id`, `hotel_id`, `packagetour_id`) VALUES
 (29, 'HOT_000003', 'PKG_000002'),
-(30, 'HOT_000003', 'PKG_000001'),
-(31, 'HOT_000001', 'PKG_000001'),
 (32, 'HOT_000003', 'PKG_000004'),
 (33, 'HOT_000002', 'PKG_000004'),
-(34, 'HOT_000001', 'PKG_000004');
+(34, 'HOT_000001', 'PKG_000004'),
+(35, 'HOT_000003', 'PKG_000001');
 
 -- --------------------------------------------------------
 
@@ -185,7 +196,12 @@ CREATE TABLE IF NOT EXISTS `payments` (
 INSERT INTO `payments` (`payment_id`, `paymentdate`, `booking_id`, `cardno`, `cardtype`, `cardholdername`, `securitycode`) VALUES
 ('1165285629', '2014-03-09 04:18:46', '1289810385', 'dsaf', 'mastercard', 'asf', 'asdf'),
 ('1218547811', '2014-03-09 04:19:00', '1275121773', 'dsaf', 'mastercard', 'asf', 'asdf'),
-('1288615224', '2014-03-06 18:56:04', '1139658107', 'a', 'mastercard', 'asda', 'asdf');
+('1218848882', '2014-03-12 23:31:48', '1340636629', 'as', 'mastercard', 'asdf', 'asf'),
+('1245297506', '2014-03-12 23:38:07', '1406826614', 'dsf', 'mastercard', 'sdaf', 'saf'),
+('1288615224', '2014-03-06 18:56:04', '1139658107', 'a', 'mastercard', 'asda', 'asdf'),
+('1299180077', '2014-03-12 23:37:59', '1291598563', 'adsf', 'mastercard', 'asdf', 'asdf'),
+('1318466862', '2014-03-12 23:36:46', '1366574345', 'dsa', 'mastercard', 'sdaf', 'sdaf'),
+('1326048375', '2014-03-12 23:35:05', '1113921106', 'asf', 'mastercard', 'sdfs', 'sadf');
 
 -- --------------------------------------------------------
 
@@ -208,7 +224,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `role`) VALUES
 ('CUS000001', 'admin', 'admin@gmail.com', 'admin', 'admin'),
-('CUS000002', 'a', 'a@gmail.com', 'a', 'member');
+('CUS000002', 'a', 'a@gmail.com', 'a', 'member'),
+('CUS000003', 'b', 'b@gmail.com', 'b', 'member');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

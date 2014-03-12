@@ -40,6 +40,8 @@ class messageHelper {
                
         $messageArray=$_SESSION['message'];
         
+        $_SESSION['message']['displayed']=1;    //messges is displayed to the user
+        
         if ($messageArray['type']==MESSAGE_TYPE_SUCCESS){
             return messageHelper::getSuccessMessage($messageArray['text']);
         }else if ($messageArray['type']==MESSAGE_TYPE_INFO){
@@ -50,8 +52,11 @@ class messageHelper {
     }
     
     public static function clearMessage(){
+        //We clear the message if it is displayed to the user
+        if ($_SESSION['message']['displayed']==1) {
         //Clear the message
         unset($_SESSION['message']);
+        }
     }
 
 }
