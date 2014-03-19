@@ -13,13 +13,16 @@
         <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
         <link href="css/custom-style.css" rel="stylesheet" type="text/css" />
         <link href="css/flexslider.css" rel="stylesheet" type="text/css" />
+        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
         <!-- Site JavaScript -->
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.validate.min.js"></script>
         <script src="js/chosen/chosen.jquery.min.js" type="text/javascript"></script>                                
         <script src="js/chosen/chosen.proto.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>  
-        <script src="js/jquery.flexslider.js" type="text/javascript"></script>  
+        <script src="js/jquery.flexslider.js" type="text/javascript"></script> 
+        <script src="js/moment-2.4.0.js" type="text/javascript"></script> 
+        <script src="js/bootstrap-datetimepicker.js" type="text/javascript"></script>         
     </head>
     <body>
         <div id="page">
