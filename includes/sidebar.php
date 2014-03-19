@@ -13,6 +13,8 @@
             <?php } ?>    
             <?php if ($objLogIn->isAdminLogIn()) { ?>
                 <li><a href="package-tour.php">Packge Tour Set Up</a></li>
+                <li><a href="customer-display.php">Customer Report</a></li>
+                <li><a href="booking-display.php">Booking Report</a></li>
             <?php } ?>
         </ul>
     </div>

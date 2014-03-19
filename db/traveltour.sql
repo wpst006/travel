@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 12, 2014 at 11:41 PM
--- Server version: 5.1.41
--- PHP Version: 5.3.1
+-- Generation Time: Mar 20, 2014 at 07:29 AM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.3.13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -50,6 +51,20 @@ INSERT INTO `bookingdetails` (`id`, `booking_id`, `package_id`, `duration`, `no_
 (8, '1291598563', 'PKG_000001', '1', 2, '5.00'),
 (9, '1406826614', 'PKG_000001', '1', 1, '5.00');
 
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `bookingdetails_view`
+--
+CREATE TABLE IF NOT EXISTS `bookingdetails_view` (
+`id` int(11) unsigned
+,`booking_id` varchar(15)
+,`package_id` varchar(15)
+,`duration` varchar(50)
+,`no_of_people` int(3)
+,`price` decimal(10,2)
+,`title` varchar(50)
+);
 -- --------------------------------------------------------
 
 --
@@ -159,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `packagetour_hotel` (
   `hotel_id` varchar(15) NOT NULL,
   `packagetour_id` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
 
 --
 -- Dumping data for table `packagetour_hotel`
@@ -170,7 +185,9 @@ INSERT INTO `packagetour_hotel` (`id`, `hotel_id`, `packagetour_id`) VALUES
 (32, 'HOT_000003', 'PKG_000004'),
 (33, 'HOT_000002', 'PKG_000004'),
 (34, 'HOT_000001', 'PKG_000004'),
-(35, 'HOT_000003', 'PKG_000001');
+(36, 'HOT_000003', 'PKG_000003'),
+(37, 'HOT_000001', 'PKG_000003'),
+(38, 'HOT_000002', 'PKG_000001');
 
 -- --------------------------------------------------------
 
@@ -226,6 +243,15 @@ INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `role`) VALUES
 ('CUS000001', 'admin', 'admin@gmail.com', 'admin', 'admin'),
 ('CUS000002', 'a', 'a@gmail.com', 'a', 'member'),
 ('CUS000003', 'b', 'b@gmail.com', 'b', 'member');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `bookingdetails_view`
+--
+DROP TABLE IF EXISTS `bookingdetails_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `bookingdetails_view` AS select `bookingdetails`.`id` AS `id`,`bookingdetails`.`booking_id` AS `booking_id`,`bookingdetails`.`package_id` AS `package_id`,`bookingdetails`.`duration` AS `duration`,`bookingdetails`.`no_of_people` AS `no_of_people`,`bookingdetails`.`price` AS `price`,`packagetours`.`title` AS `title` from (`bookingdetails` join `packagetours` on((`bookingdetails`.`package_id` = `packagetours`.`package_id`))) order by `bookingdetails`.`id`;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

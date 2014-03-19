@@ -11,21 +11,21 @@ class printPDF extends myPDF {
         $this->SetFont('Times', 'B', 12);
         // Header
         
-        $this->Cell(50, 7, 'Seat', 1);
-        $this->Cell(50, 7, 'No of Tickets', 1);
+        $this->Cell(50, 7, 'Package', 1);
+        $this->Cell(50, 7, 'Duration', 1);
+        $this->Cell(50, 7, 'No of People', 1);
         $this->Cell(50, 7, 'Price', 1);
-        $this->Cell(100, 7, 'Flight Info', 1);
 
         $this->Ln();
         // Data        
         foreach ($data as $row) {
             $this->SetFont('Times', '', 12);
-            $this->Cell(50,42, $row['seat_title'], 1);
-            $this->Cell(50, 42, $row['no_of_seats'], 1);
-            $this->Cell(50, 42, $row['price'], 1);  
-            $this->MultiCell(100, 7, $row['flight_info'], 1);
+            $this->Cell(50,7, $row['package_title'], 1);
+            $this->Cell(50, 7, $row['duration'], 1);
+            $this->Cell(50, 7, $row['no_of_people'], 1);  
+            $this->Cell(50, 7, $row['price'], 1);
                       
-            //$this->Ln();
+            $this->Ln();
         }
     }
 
@@ -56,7 +56,7 @@ $pdf->Cell(80);
 $pdf->SetFont('Times', 'B', 12);
 $pdf->Cell(50, 7, 'Booking Date :', 0, 0, 'R');
 $pdf->SetFont('Times', '', 12);
-$pdf->Cell(50, 7, $bookingData[0]['bookingdate'], 0, 1, 'L');
+$pdf->Cell(50, 7, $bookingData[0]['booking_date'], 0, 1, 'L');
 
 $pdf->Cell(80);
 $pdf->SetFont('Times', 'B', 12);
@@ -84,22 +84,15 @@ $pdf->Cell(50,7, $bookingData[0]['total'], 0, 1, 'L');
 
 $pdf->Ln();
 // Column headings
-$header = array('Flight Info', 'Seat', 'No of Tickets', 'Price');
+$header = array('Package','Duration','No of People','Price');
 
 foreach ($bookingDetailData as $key => $value) {
 
-    $pdf->SetFont('Times', 'B', 12);
-    $cellText = "Route : " . $value['route_title'] . "\n";
-    $cellText.="Flight Name : " . $value['flight_name']. "\n";
-    $cellText.="Departure Date Time : " . $value['departure_datetime']. "\n";
-    $cellText.="Arrival Date Time : " . $value['arrival_datetime']. "\n";
-    $cellText.="Departure Airport : " . $value['departure_airport']. "\n";
-    $cellText.="Arrival Airport : " . $value['arrival_airport'];
-
+    $pdf->SetFont('Times', 'B', 12);    
     $data[] = array(
-        'flight_info' => $cellText,
-        'seat_title' => $value['seat_title'],
-        'no_of_seats' => $value['no_of_seats'],
+        'package_title' => $value['package_title'],
+        'duration' => $value['duration'],
+        'no_of_people' => $value['no_of_people'],
         'price' => $value['price'],
     );
 }

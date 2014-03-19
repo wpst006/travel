@@ -1,4 +1,4 @@
-CREATE VIEW `bookings_view`
+CREATE VIEW `bookingdetails_view`
 AS
 SELECT bookingdetails.*,packagetours.title
 FROM bookingdetails

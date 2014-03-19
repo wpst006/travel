@@ -1,4 +1,6 @@
 <?php include ('includes/includefiles.php'); ?>
+<?php require_once ('includes/packageTourHelper.php'); ?>
+
 <?php
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'delete') {
@@ -24,23 +26,21 @@ if (isset($_GET['action'])) {
             <th>Package ID</th>
             <th>Title</th>
             <th>Duration</th>
+            <th>Hotels</th>
             <th>Price</th>           
             <th></th>
             </thead>
             <tbody>
                 <?php
-                $sql = "SELECT packagetours.* " .
-                        "FROM packagetours " .
-                        "ORDER BY package_id";
-
-                $result = mysql_query($sql) or die(mysql_error());
+                $packageData=  packageTourHelper::selectAll();
                 ?>
-                <?php while ($row = mysql_fetch_array($result)) { ?>
+                <?php foreach($packageData as $row) { ?>
                     <tr>                        
                         <td><?php echo $row['package_id']; ?></td>
                         <td><?php echo $row['title']; ?></td>
                         <td><?php echo $row['duration'] . " day(s)"; ?></td>
-                        <td><?php echo $row['price']; ?></td>
+                        <td><?php echo $row['hotel']; ?></td>
+                        <td><?php echo $row['price']; ?></td>                        
                         <?php
                         $objLogIn=new logIn();
                         
@@ -67,6 +67,17 @@ if (isset($_GET['action'])) {
         </table>
     </div>
 </div>
+
+</br>
+<div class="row">
+    <div class="col-md-12 text-right">
+        <?php if ($objLogIn->isAdminLogIn()) { ?>
+        <a href="package-tour.php" class="btn btn-default my-btn btn-success">Add New Package Tour</a>
+        <?php } ?>
+        <a href="print_packagetour.php" class="btn btn-default my-btn btn-success">Print</a>
+    </div>
+</div>
+
 
 <script type="text/javascript" src="js/datatable/jquery.dataTables.min.js"></script>
 <script type="text/javascript">

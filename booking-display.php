@@ -89,7 +89,7 @@ if (isset($_POST['submitted'])) {
                 </label>
             </div>
             <div class="form-group btn-row">
-                <button type="submit" name="submitted" class="btn btn-default btn-primary my-btn">Search</button>        
+                <button type="submit" name="submitted" class="btn btn-default btn-success my-btn">Search</button>        
                 <?php
                 $link = "print_bookingDisplay.php";
 
@@ -109,7 +109,7 @@ if (isset($_POST['submitted'])) {
                     $link.="fromDate=" . $fromDate . "&toDate=" . $toDate;
                 }
                 ?>
-                <a href="<?php echo $link; ?>" target="_blank" class="btn btn-default btn-info my-btn">Print</a>
+                <a href="<?php echo $link; ?>" target="_blank" class="btn btn-default btn-success my-btn">Print</a>
             </div>
 
         </form>

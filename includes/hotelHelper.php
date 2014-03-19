@@ -26,19 +26,20 @@ class hotelHelper {
     public static function getPackageTourHotelByPackageID($package_id) {
         $sql = "SELECT * " .
                 "FROM packagetour_hotel " .
+                "INNER JOIN hotels " .
+                "ON packagetour_hotel.hotel_id=hotels.hotel_id " .
                 "WHERE packagetour_id='" . $package_id . "' " .
-                "ORDER BY hotel_id";
+                "ORDER BY packagetour_hotel.hotel_id";
 
         $result = mysql_query($sql) or die(mysql_error());
 
-        if (mysql_num_rows($result) == 0) {
-            return null;
-        }
-
+        $output=array();
+        
         while ($row = mysql_fetch_array($result)) {
             $output[] = array(
                 'id' => $row['id'],
                 'hotel_id' => $row['hotel_id'],
+                'hotel_name' => $row['hotel_name'],
                 'packagetour_id' => $row['packagetour_id'],
             );
         }

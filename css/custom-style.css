@@ -40,7 +40,7 @@ form{
 
 a.btn, a.btn:link, a.btn:visited {
     color: #FFFFFF;
-    font-weight:bold;
+    /*font-weight:bold;*/
 }
 
 #login {
@@ -127,3 +127,6 @@ table.dataTable {
 }
 /* Table Css End */
 /*************************************************************************************************************************/
+.btn-success{
+    background-image: linear-gradient(to bottom, #82ca9c 0px, #419641 100%);
+}

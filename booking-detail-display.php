@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label">Booking Date</label>
                 <div class="col-sm-9">
-                    <p id="title" class="form-control-static"><?php echo $bookingData[0]['bookingdate']; ?></p>
+                    <p id="title" class="form-control-static"><?php echo $bookingData[0]['booking_date']; ?></p>
                 </div>
             </div>
 
@@ -67,34 +67,24 @@
 
         <table id="seat-table">
             <thead>
-            <th>Flight Info</th>
-            <th>Seat</th>
-            <th>No of tickets</th>
+            <th>Package</th>
+            <th>Duration</th>
+            <th>No of People</th>
             <th>Price</th>
             </thead>
             <tbody>
                 <?php foreach ($bookingDetailData as $row) { ?>
                     <tr>
-                        <td>
-                            <?php 
-                            $cellText="<b>Route : </b>" . $row['route_title'] . "<br/>"; 
-                            $cellText.="<b>Flight Name : </b>" . $row['flight_name'] . "<br/>"; 
-                            $cellText.="<b>Departure Date Time : </b>" . $row['departure_datetime'] . "<br/>";
-                            $cellText.="<b>Arrival Date Time : </b>" . $row['arrival_datetime'] . "<br/>";
-                            $cellText.="<b>Departure Airport : </b>" . $row['departure_airport'] . "<br/>";
-                            $cellText.="<b>Arrival Airport : </b>" . $row['arrival_airport'];
-                            echo $cellText;
-                            ?>
-                        </td>
-                        <td><?php echo $row['seat_title']; ?></td>
-                        <td><?php echo $row['no_of_seats']; ?></td>
+                        <td><?php echo $row['package_title']; ?></td>
+                        <td><?php echo $row['duration']; ?></td>
+                        <td><?php echo $row['no_of_people']; ?></td>
                         <td><?php echo $row['price']; ?></td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
         <br/>
-        <a href="print_bookingDetailDisplay.php?booking_id=<?php echo $_GET['booking_id']; ?>" class="btn btn-default btn-info my-btn pull-right btn-block">Print</a>
+        <a href="print_bookingDetailDisplay.php?booking_id=<?php echo $_GET['booking_id']; ?>" class="btn btn-default btn-success my-btn pull-right btn-block">Print</a>
     </div>
 </div>
 

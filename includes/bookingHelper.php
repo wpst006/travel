@@ -87,9 +87,9 @@ class bookingHelper{
     
     public static function getBookingDetailsByBookingID($booking_id){
         $sql = "SELECT * " .
-                "FROM bookings_view " .                
-                "WHERE bookings_view.booking_id='" . $booking_id . "' " .
-                "ORDER BY bookings_view.booking_id";
+                "FROM bookingdetails_view " .                
+                "WHERE bookingdetails_view.booking_id='" . $booking_id . "' " .
+                "ORDER BY bookingdetails_view.booking_id";
 
         $result = mysql_query($sql) or die(mysql_error());
         
