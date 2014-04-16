@@ -1,4 +1,5 @@
 <?php
+
 class logIn {
 
     function isLogInOK($userName, $password) {
@@ -34,14 +35,14 @@ class logIn {
         return $this->isLoggedIn("member");
     }
 
-    function isLoggedIn($role=null) {
+    function isLoggedIn($role = null) {
         if (!isset($_SESSION['user']))
             return false;
 
         if (!isset($_SESSION['user']['role']))
             return false;
 
-        if (!isset($role)){
+        if (!isset($role)) {
             return true;
         }
         //Checking "role"
@@ -51,5 +52,23 @@ class logIn {
 
         return true;
     }
+
+    function getLoggedInUserInfo(){
+        if (!isset($_SESSION['user']))
+            return null;
+
+        if (!isset($_SESSION['user']['role']))
+            return null;
+
+        $output=array(
+            'user_id'=>$_SESSION['user']['user_id'],
+            'username'=>$_SESSION['user']['username'] ,
+            'password'=>$_SESSION['user']['password'],
+            'role'=>$_SESSION['user']['role']
+        );
+
+        return $output;
+    }
 }
+
 ?>

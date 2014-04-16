@@ -65,7 +65,7 @@ a.btn, a.btn:link, a.btn:visited {
     font-size: 100%;    
 }
 
-#page{    
+#main-page{    
     width:1024px;
     background: #FFFFFF url(../images/logo.png) repeat-y;
 }
@@ -130,3 +130,14 @@ table.dataTable {
 .btn-success{
     background-image: linear-gradient(to bottom, #82ca9c 0px, #419641 100%);
 }
+/*************************************************************************************************************************/
+/* Gallery Start */
+#gallery{
+    width:530px;
+}
+
+#thumbs{
+
+}
+/* Gallery End */
+/*************************************************************************************************************************/

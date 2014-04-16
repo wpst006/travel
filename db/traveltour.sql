@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 20, 2014 at 07:29 AM
+-- Generation Time: Apr 16, 2014 at 12:04 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.3.13
 
@@ -117,7 +117,8 @@ CREATE TABLE IF NOT EXISTS `customers` (
 
 INSERT INTO `customers` (`customer_id`, `firstname`, `lastname`, `passport_no`, `country`, `postalcode`, `phone_no`) VALUES
 ('CUS000002', 'a', 'a', 'a', 'a', 'a', 'a'),
-('CUS000003', 'b', 'b', 'b', 'b', 'b', 'b');
+('CUS000003', 'b', 'b', 'b', 'b', 'b', 'b'),
+('CUS000004', 'ccc', 'c', 'c', 'c', 'c', 'c');
 
 -- --------------------------------------------------------
 
@@ -242,7 +243,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `role`) VALUES
 ('CUS000001', 'admin', 'admin@gmail.com', 'admin', 'admin'),
 ('CUS000002', 'a', 'a@gmail.com', 'a', 'member'),
-('CUS000003', 'b', 'b@gmail.com', 'b', 'member');
+('CUS000003', 'b', 'b@gmail.com', 'b', 'member'),
+('CUS000004', 'c', 'c@gmail.com', 'c', 'customer');
 
 -- --------------------------------------------------------
 

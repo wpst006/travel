@@ -25,7 +25,7 @@
         <script src="js/bootstrap-datetimepicker.js" type="text/javascript"></script>         
     </head>
     <body>
-        <div id="page">
+        <div id="main-page">
             <?php include ('includes/sidebar.php'); ?>
             <div id="content">
                 <?php include ('includes/banner.php'); ?>
